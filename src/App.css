@@ -1,0 +1,9 @@
+html, body, #root {
+  height: 100%;
+  overflow: hidden;
+  background-color: hsl(0, 0%, 0%);
+}
+
+.app-container {
+  height: 90%;
+}

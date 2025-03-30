@@ -1,0 +1,18 @@
+.taskforce-calendar {
+    display: flex;
+    gap: 2vh;
+    overflow-x: auto; 
+    padding: 10px;
+    background: #4d4e4e;
+    border-radius: 1vh;
+    height:100%;
+  }
+  
+.taskcolumn-calendar {
+    flex: 1;
+    width: 100%;
+    min-height: 100%;
+    border-radius: 1vh;
+    background-color: #a1a1a1;
+    border: 2px solid #070707;
+}

@@ -1,0 +1,48 @@
+.taskforce-column {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px;
+  border: 2px  transparent; 
+  transition: border 0.2s ease-in-out;
+}
+
+.p-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%; 
+}
+
+.p-toggleable-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.p-panel-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+  
+  .empty-tasks {
+    text-align: center;
+    color: rgb(255, 255, 255);
+    padding: 10px;
+  }
+  
+  .taskcolumn-header {
+    text-align: center;
+    color: rgb(248, 248, 248);
+    font-size: 1.2rem;
+    font-weight: bold;
+    width: 100%;
+    border-bottom: 2px solid #070707;
+  }
+
+  .taskforce-column.is-over {
+    border-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.15);
+}

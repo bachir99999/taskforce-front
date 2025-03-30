@@ -1,0 +1,23 @@
+.taskforce-card {
+    font-family: Georgia, 'Times New Roman', Times, sans-serif;
+    padding: 1%;
+    width: 100%;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    color: aliceblue;
+    margin: 1%;
+    border-radius: 1vh;
+    background-color: rgba(20, 20, 20, 0.767) ;
+}
+
+.taskforce-card-desc{
+    font-size: small;
+    text-align: left;
+    margin-left: 2%;
+}
+
+
+.taskforce-card-title {
+    font-size: large;
+}
