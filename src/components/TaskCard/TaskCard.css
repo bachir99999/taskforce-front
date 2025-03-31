@@ -3,12 +3,12 @@
     padding: 1%;
     width: 100%;
     display: flex;
-    text-align: center;
     flex-direction: column;
     color: aliceblue;
     margin: 1%;
     border-radius: 1vh;
-    background-color: rgba(20, 20, 20, 0.767) ;
+    background-color: rgba(20, 20, 20, 0.767);
+    cursor:move;
 }
 
 .taskforce-card-desc{
@@ -17,7 +17,16 @@
     margin-left: 2%;
 }
 
-
 .taskforce-card-title {
     font-size: large;
+    display: flex;
+    justify-content: center; 
+    position: relative;
+    width: 100%;
 }
+
+.taskcard-popup-button {
+    position: absolute;
+    right: 0;
+}
+

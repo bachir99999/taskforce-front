@@ -36,7 +36,7 @@
 }
 
 .dropdown-status {
-    width: 40%;
+    max-width: calc(2 * 5em);
     text-align: center;
     border-radius: 5%;
     margin: 2%;
