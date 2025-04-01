@@ -6,6 +6,7 @@ import { Button } from "primereact/button";
 import DropdownStatus from "../DropdownStatus/DropdownStatus";
 import { Task } from "../../types/task";
 import "./TaskDetailsPopup.css";
+import CalendarPopup from "../CalendarPopup/CalendarPopup";
 
 interface TaskDetailsPopupProps {
   task: Task;
@@ -55,9 +56,12 @@ function TaskDetailsPopup({
             rows={3}
           />
 
-          <label>Statut :</label>
+          <div className="task-details-label-sd">
+            <label>Statut : </label> <label> Date :</label>
+          </div>
           <div className="taskpopup-dropdown-container">
             <DropdownStatus status={editedTask.status} />
+            <CalendarPopup date={editedTask.date} handleChange={handleChange} />
           </div>
 
           <div className="task-details-buttons">

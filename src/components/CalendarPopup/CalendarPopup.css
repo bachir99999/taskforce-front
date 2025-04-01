@@ -1,0 +1,14 @@
+.p-datepicker {
+    background: rgba(60, 60, 60);
+    color: white;
+  }
+  
+  .p-datepicker-month, .p-datepicker-year  {
+    color: white;
+  }
+  
+  .p-button-secondary, .p-datepicker-prev, .p-datepicker-next{
+    background: rgba(60, 60, 60, 0.8);
+    color: white;
+    border-radius: 5px;
+  }

@@ -11,10 +11,11 @@ interface TaskCardProps {
 }
 
 function TaskCard({ task }: TaskCardProps) {
-  const [showPopup, setShowPopup] = useState(false);
+  const [showPopup, setShowPopup] = useState<boolean>(false);
+  const [curTask, setCurTask] = useState<Task>(task);
 
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id: task.id.toString(),
+    id: curTask.id.toString(),
   });
 
   const style = transform
@@ -34,26 +35,29 @@ function TaskCard({ task }: TaskCardProps) {
         style={style}
       >
         <div className="taskforce-card-title">
-          {task.title}
+          {curTask.title}
           <div className="taskcard-popup-button">
             <PopupButton onClick={() => setShowPopup(true)} />
           </div>
         </div>
 
-        {task.description && (
+        {curTask.description && (
           <div className="taskforce-card-desc">
-            {truncateText(task.description, 35)}
+            {truncateText(curTask.description, 35)}
           </div>
         )}
-        <DropdownStatus status={task.status} />
+        <div className="taskforce-card-dropdownstatus">
+          <DropdownStatus status={curTask.status} />
+        </div>
       </div>
       <TaskDetailsPopup
-        task={task}
+        task={curTask}
         visible={showPopup}
         onClose={() => setShowPopup(false)}
-        onSave={(updatedTask) =>
-          console.log("Tâche mise à jour :", updatedTask)
-        }
+        onSave={(updatedTask) => {
+          console.log("Tâche mise à jour :", updatedTask);
+          setCurTask(updatedTask);
+        }}
       />
     </>
   );

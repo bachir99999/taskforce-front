@@ -30,3 +30,10 @@
     right: 0;
 }
 
+.taskforce-card-dropdownstatus {
+    text-align: center;
+}
+
+.taskforce-card-dropdownstatus .dropdown-status {
+    width: 100%;
+}
