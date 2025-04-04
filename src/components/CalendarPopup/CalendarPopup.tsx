@@ -1,11 +1,11 @@
 import { Calendar } from "primereact/calendar";
 import { addLocale } from "primereact/api";
-import { Task } from "../../types/task";
 import "./CalendarPopup.css";
 
 interface CalendarPopupProps {
   date: Date;
-  handleChange: (field: keyof Task, value: any) => void;
+  handleChange: (value: any) => void;
+  onlyIcon: boolean;
 }
 
 addLocale("fr", {
@@ -55,13 +55,15 @@ addLocale("fr", {
   weekHeader: "Sem.",
 });
 
-function CalendarPopup({ date, handleChange }: CalendarPopupProps) {
+function CalendarPopup({ date, handleChange, onlyIcon }: CalendarPopupProps) {
   return (
     <Calendar
+      className={onlyIcon ? "hide-input" : ""}
       value={date}
       locale="fr"
-      onChange={(e) => handleChange("date", e.target.value)}
+      onChange={(e) => handleChange(e.target.value)}
       showButtonBar
+      showIcon={onlyIcon}
     />
   );
 }

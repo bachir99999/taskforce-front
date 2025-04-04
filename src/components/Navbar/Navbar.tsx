@@ -14,16 +14,23 @@ function Navbar() {
       icon: "pi pi-chart-bar",
       command: () => navigate("/stats"),
     },
-    { label: "Profile", icon: "pi pi-user", command: () => navigate("/user") },
+    {
+      label: "Profile",
+      icon: "pi pi-user",
+      command: () => navigate("/user"),
+    },
   ];
 
   return (
-    <div className="navbar">
-      <TabMenu
-        model={items}
-        activeIndex={activeIndex}
-        onTabChange={(e) => setActiveIndex(e.index)}
-      />
+    <div className="taskforce-navbar">
+      <div className="taskforce-navbar-title">TASKFORCE</div>
+      <div className="taskforce-navbar-menu">
+        <TabMenu
+          model={items}
+          activeIndex={activeIndex}
+          onTabChange={(e) => setActiveIndex(e.index)}
+        />
+      </div>
     </div>
   );
 }

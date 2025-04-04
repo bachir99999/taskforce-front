@@ -7,8 +7,19 @@
     color: white;
   }
   
-  .p-button-secondary, .p-datepicker-prev, .p-datepicker-next{
+  .p-button-secondary, .p-datepicker-prev, .p-datepicker-next, .p-datepicker-trigger {
     background: rgba(60, 60, 60, 0.8);
     color: white;
     border-radius: 5px;
+  }
+
+  .hide-input .p-inputtext {
+    z-index: -1;
+    position: absolute;
+  }
+
+  .p-datepicker td span:hover {
+    background-color: rgba(255, 255, 255, 0.2); 
+    border-radius: 50%; 
+    transition: background-color 0.2s ease-in-out;
   }

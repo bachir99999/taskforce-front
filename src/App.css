@@ -1,16 +1,10 @@
 html, body, #root {
   height: 100%;
-overflow: hidden;
+  overflow: hidden;
   background-color: hsl(0, 0%, 0%);
 }
 
 .app-container {
-  height: 88%;
+  height: 100%;
 }
 
-.calendar-controls {
-  padding-top: 3px;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
