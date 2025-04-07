@@ -24,3 +24,8 @@
 .test  .taskforce-calendar {
     margin-top: 10px
 }
+
+.p-tooltip{
+  background-color: rgb(32, 31, 31);
+  color:white;
+}

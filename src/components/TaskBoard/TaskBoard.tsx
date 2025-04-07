@@ -75,6 +75,7 @@ function TaskBoard() {
       <div className="calendar-controls">
         <Button
           icon="pi pi-chevron-left"
+          tooltip="Semaine précedente"
           onClick={prevWeek}
           className="calendar-controls-buttons"
         />
@@ -85,6 +86,7 @@ function TaskBoard() {
         />
         <Button
           icon="pi pi-chevron-right"
+          tooltip="Semaine suivante"
           onClick={nextWeek}
           className="calendar-controls-buttons"
         />

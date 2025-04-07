@@ -7,3 +7,11 @@ export interface Task {
   date: Date;
   description?: string;
 }
+
+
+export interface TaskDTO {
+  title: string;
+  status: TaskStatus;
+  date: Date;
+  description?: string;
+}

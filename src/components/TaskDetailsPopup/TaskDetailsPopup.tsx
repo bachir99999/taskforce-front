@@ -9,7 +9,7 @@ import "./TaskDetailsPopup.css";
 import CalendarPopup from "../CalendarPopup/CalendarPopup";
 
 interface TaskDetailsPopupProps {
-  task: Task;
+  task: Task | null;
   visible: boolean;
   onClose: () => void;
   onSave: (updatedTask: Task) => void;
@@ -21,7 +21,15 @@ function TaskDetailsPopup({
   onClose,
   onSave,
 }: TaskDetailsPopupProps) {
-  const [editedTask, setEditedTask] = useState<Task>(task);
+  const [editedTask, setEditedTask] = useState<Task>(
+    task ?? {
+      id: -1,
+      title: "",
+      status: "TODO",
+      description: "",
+      date: new Date(),
+    }
+  );
 
   const handleChange = (field: keyof Task, value: any) => {
     setEditedTask((prev) => ({ ...prev, [field]: value }));
@@ -34,7 +42,7 @@ function TaskDetailsPopup({
 
   return (
     <Dialog
-      header="Détails de la tâche"
+      header={task ? "Détails de la tâche" : "Création d'une tache"}
       visible={visible}
       onHide={onClose}
       className="task-dialog"
@@ -61,7 +69,11 @@ function TaskDetailsPopup({
           </div>
           <div className="taskpopup-dropdown-container">
             <DropdownStatus status={editedTask.status} />
-            <CalendarPopup date={editedTask.date} handleChange={handleChange} />
+            <CalendarPopup
+              date={editedTask.date}
+              handleChange={(value) => handleChange("date", value)}
+              onlyIcon={false}
+            />
           </div>
 
           <div className="task-details-buttons">
