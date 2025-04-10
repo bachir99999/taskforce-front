@@ -3,7 +3,7 @@ import { isSameDay } from "date-fns";
 import { Task } from "../../types/task";
 import "./TaskCalendar.css";
 import { DndContext, DragEndEvent } from "@dnd-kit/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface TaskCalendarProps {
   tasks: Task[];
@@ -31,17 +31,21 @@ function TaskCalendar({ tasks, startDate }: TaskCalendarProps) {
 
     setTaskList((prevTasks) =>
       prevTasks.map((task) =>
-        task.id === taskId ? { ...task, date: newDate } : task
+        task.id === taskId ? { ...task, dueDate: newDate } : task
       )
     );
   }
+
+  useEffect(() => {
+    setTaskList(tasks);
+  }, [tasks]);
 
   return (
     <DndContext onDragEnd={handleDragEnd}>
       <div className="taskforce-calendar">
         {weekDays.map((day) => {
           const tasksForDay = taskList.filter((task) =>
-            isSameDay(task.date, day)
+            isSameDay(task.dueDate, day)
           );
           return (
             <div className="taskcolumn-calendar" key={day.toDateString()}>

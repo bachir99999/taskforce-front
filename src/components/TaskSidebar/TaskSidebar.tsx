@@ -1,11 +1,12 @@
 import { Button } from "primereact/button";
-import { TaskStatus } from "../../types/task";
+import { Task, TaskStatus } from "../../types/task";
 import "./TaskSidebar.css";
 import { useState } from "react";
 import { Sidebar } from "primereact/sidebar";
 
 import { MultiSelect } from "primereact/multiselect";
 import TaskDetailsPopup from "../TaskDetailsPopup/TaskDetailsPopup";
+import { createTask } from "../../lib/api/Task";
 
 interface TaskSidebarProps {
   handleFilter: (status: TaskStatus) => void;
@@ -21,6 +22,15 @@ function TaskSidebar({ handleFilter }: TaskSidebarProps) {
   const [visible, setVisible] = useState<boolean>(false);
   const [showPopup, setShowPopup] = useState<boolean>(false);
   const [selectedStatus, setSelectedStatus] = useState<TaskStatus>();
+
+  const handleTaskCreate = async (newTask: Omit<Task, "id">) => {
+    try {
+      await createTask(newTask);
+      setShowPopup(false);
+    } catch (error) {
+      console.error("Erreur lors de la création de la tâche :", error);
+    }
+  };
 
   return (
     <>
@@ -70,9 +80,7 @@ function TaskSidebar({ handleFilter }: TaskSidebarProps) {
         task={null}
         visible={showPopup}
         onClose={() => setShowPopup(false)}
-        onSave={(updatedTask) => {
-          console.log("Tâche créé:", updatedTask);
-        }}
+        onSave={(newTask) => handleTaskCreate(newTask)}
       />
     </>
   );

@@ -24,10 +24,10 @@ function TaskDetailsPopup({
   const [editedTask, setEditedTask] = useState<Task>(
     task ?? {
       id: -1,
-      title: "",
+      name: "",
       status: "TODO",
       description: "",
-      date: new Date(),
+      dueDate: new Date(),
     }
   );
 
@@ -51,8 +51,8 @@ function TaskDetailsPopup({
         <div className="task-details">
           <label>Titre :</label>
           <InputText
-            value={editedTask.title}
-            onChange={(e) => handleChange("title", e.target.value)}
+            value={editedTask.name}
+            onChange={(e) => handleChange("name", e.target.value)}
             className="task-details-input"
           />
 
@@ -70,8 +70,8 @@ function TaskDetailsPopup({
           <div className="taskpopup-dropdown-container">
             <DropdownStatus status={editedTask.status} />
             <CalendarPopup
-              date={editedTask.date}
-              handleChange={(value) => handleChange("date", value)}
+              date={editedTask.dueDate}
+              handleChange={(value) => handleChange("dueDate", value)}
               onlyIcon={false}
             />
           </div>

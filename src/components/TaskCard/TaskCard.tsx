@@ -35,7 +35,7 @@ function TaskCard({ task }: TaskCardProps) {
         style={style}
       >
         <div className="taskforce-card-title">
-          {curTask.title}
+          {curTask.name}
           <div className="taskcard-popup-button">
             <PopupButton onClick={() => setShowPopup(true)} />
           </div>
