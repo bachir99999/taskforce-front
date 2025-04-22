@@ -4,6 +4,7 @@ import { Task } from "../../types/task";
 import "./TaskCalendar.css";
 import { DndContext, DragEndEvent } from "@dnd-kit/core";
 import { useEffect, useState } from "react";
+import { updateTask } from "../../lib/api/Task";
 
 interface TaskCalendarProps {
   tasks: Task[];
@@ -27,6 +28,20 @@ function TaskCalendar({
   const [taskList, setTaskList] = useState<Task[]>(tasks);
   const weekDays = getWeekDays(startDate);
 
+  const handleSaveTask = async (updatedTask: Task) => {
+    try {
+      await updateTask(updatedTask.id, {
+        name: updatedTask.name,
+        description: updatedTask.description,
+        status: updatedTask.status,
+        dueDate: updatedTask.dueDate,
+      });
+      handleTaskUpdate(updatedTask);
+    } catch (err) {
+      console.error("Erreur update :", err);
+    }
+  };
+
   function handleDragEnd(event: DragEndEvent) {
     const { active, over } = event;
     if (!over) return;
@@ -35,9 +50,14 @@ function TaskCalendar({
     const newDate = new Date(String(over.id));
 
     setTaskList((prevTasks) =>
-      prevTasks.map((task) =>
-        task.id === taskId ? { ...task, dueDate: newDate } : task
-      )
+      prevTasks.map((task) => {
+        if (task.id === taskId) {
+          const updatedTask = { ...task, dueDate: newDate };
+          handleSaveTask(updatedTask);
+          return updatedTask;
+        }
+        return task;
+      })
     );
   }
 
