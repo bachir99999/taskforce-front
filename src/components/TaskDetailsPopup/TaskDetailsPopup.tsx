@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
@@ -14,7 +14,6 @@ interface TaskDetailsPopupProps {
   onClose: () => void;
   onSave: (updatedTask: Task) => void;
 }
-
 function TaskDetailsPopup({
   task,
   visible,
@@ -30,6 +29,12 @@ function TaskDetailsPopup({
       dueDate: new Date(),
     }
   );
+
+  useEffect(() => {
+    if (task) {
+      setEditedTask(task);
+    }
+  }, [task]);
 
   const handleChange = (field: keyof Task, value: any) => {
     setEditedTask((prev) => ({ ...prev, [field]: value }));
@@ -68,7 +73,10 @@ function TaskDetailsPopup({
             <label>Statut : </label> <label> Date :</label>
           </div>
           <div className="taskpopup-dropdown-container">
-            <DropdownStatus status={editedTask.status} />
+            <DropdownStatus
+              status={editedTask.status}
+              handleChange={(value) => handleChange("status", value)}
+            />
             <CalendarPopup
               date={editedTask.dueDate}
               handleChange={(value) => handleChange("dueDate", value)}

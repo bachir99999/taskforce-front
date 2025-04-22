@@ -8,9 +8,10 @@ import clsx from "clsx";
 interface TaskColumnProps {
   day: Date;
   tasks: Task[];
+  handleTaskUpdate: (updatedTask: Task) => void;
 }
 
-function TaskColumn({ day, tasks }: TaskColumnProps) {
+function TaskColumn({ day, tasks, handleTaskUpdate }: TaskColumnProps) {
   const { setNodeRef, isOver } = useDroppable({
     id: day.toDateString(),
   });
@@ -36,7 +37,13 @@ function TaskColumn({ day, tasks }: TaskColumnProps) {
         data-day={day.toDateString()}
       >
         {tasks.length > 0 ? (
-          tasks.map((task) => <TaskCard key={task.id} task={task} />)
+          tasks.map((task) => (
+            <TaskCard
+              key={task.id}
+              task={task}
+              handleTaskUpdate={handleTaskUpdate}
+            />
+          ))
         ) : (
           <div className="empty-tasks">Aucune tâche</div>
         )}

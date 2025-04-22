@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 interface TaskCalendarProps {
   tasks: Task[];
   startDate: Date;
+  handleTaskUpdate: (updatedTask: Task) => void;
 }
 
 const getWeekDays = (startDate: Date) => {
@@ -18,7 +19,11 @@ const getWeekDays = (startDate: Date) => {
   });
 };
 
-function TaskCalendar({ tasks, startDate }: TaskCalendarProps) {
+function TaskCalendar({
+  tasks,
+  startDate,
+  handleTaskUpdate,
+}: TaskCalendarProps) {
   const [taskList, setTaskList] = useState<Task[]>(tasks);
   const weekDays = getWeekDays(startDate);
 
@@ -49,7 +54,11 @@ function TaskCalendar({ tasks, startDate }: TaskCalendarProps) {
           );
           return (
             <div className="taskcolumn-calendar" key={day.toDateString()}>
-              <TaskColumn day={day} tasks={tasksForDay} />
+              <TaskColumn
+                day={day}
+                tasks={tasksForDay}
+                handleTaskUpdate={handleTaskUpdate}
+              />
             </div>
           );
         })}

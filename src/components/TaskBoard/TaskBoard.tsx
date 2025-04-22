@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Task } from "../../types/task";
 import TaskCalendar from "../TaskCalendar/TaskCalendar";
 import { Button } from "primereact/button";
@@ -23,14 +23,12 @@ function TaskBoard() {
 
   useEffect(() => {
     getAllTasks()
-      .then((data) => setTasks(data))
+      .then((data) => setTasks(data.sort((a, b) => a.id - b.id)))
       .catch((error) =>
         console.error("Erreur lors du chargement des tâches :", error)
       )
       .finally(() => setLoading(false));
   }, []);
-
-  console.log(tasks);
 
   const prevWeek = () => {
     setStartDate((prev) => {
@@ -55,11 +53,21 @@ function TaskBoard() {
     }
   };
 
+  const handleTaskUpdate = (updatedTask: Task) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) => (task.id === updatedTask.id ? updatedTask : task))
+    );
+  };
+
   return (
     <div className="taskforce-board">
       <div className="test">
         <TaskSidebar handleFilter={() => {}} />
-        <TaskCalendar tasks={tasks} startDate={startDate} />
+        <TaskCalendar
+          tasks={tasks}
+          startDate={startDate}
+          handleTaskUpdate={handleTaskUpdate}
+        />
       </div>
       <div className="calendar-controls">
         <Button

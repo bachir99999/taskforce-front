@@ -14,8 +14,8 @@ interface TaskSidebarProps {
 
 const taskStatusOptions = [
   { label: "À faire", value: "TODO" },
-  { label: "En cours", value: "En cours" },
-  { label: "Terminé", value: "Terminé" },
+  { label: "En cours", value: "IN_PROGRESS" },
+  { label: "Terminé", value: "DONE" },
 ];
 
 function TaskSidebar({ handleFilter }: TaskSidebarProps) {

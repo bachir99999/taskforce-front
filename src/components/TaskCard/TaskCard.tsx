@@ -5,12 +5,17 @@ import { useDraggable } from "@dnd-kit/core";
 import PopupButton from "../PopupButton/PopupButton";
 import TaskDetailsPopup from "../TaskDetailsPopup/TaskDetailsPopup";
 import { useState } from "react";
+import { updateTask } from "../../lib/api/Task";
 
 interface TaskCardProps {
   task: Task;
+  handleTaskUpdate: (updatedTask: Task) => void;
 }
 
-function TaskCard({ task }: TaskCardProps) {
+const truncateText = (text: string, maxLength: number) =>
+  text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
+
+function TaskCard({ task, handleTaskUpdate }: TaskCardProps) {
   const [showPopup, setShowPopup] = useState<boolean>(false);
   const [curTask, setCurTask] = useState<Task>(task);
 
@@ -22,8 +27,22 @@ function TaskCard({ task }: TaskCardProps) {
     ? { transform: `translate(${transform.x}px, ${transform.y}px)` }
     : undefined;
 
-  const truncateText = (text: string, maxLength: number) =>
-    text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
+  const handleSaveTask = async (updatedTask: Task) => {
+    if (JSON.stringify(curTask) !== JSON.stringify(updatedTask)) {
+      try {
+        setCurTask(updatedTask);
+        await updateTask(updatedTask.id, {
+          name: updatedTask.name,
+          description: updatedTask.description,
+          status: updatedTask.status,
+          dueDate: updatedTask.dueDate,
+        });
+        handleTaskUpdate(updatedTask);
+      } catch (err) {
+        console.error("Erreur update :", err);
+      }
+    }
+  };
 
   return (
     <>
@@ -47,17 +66,19 @@ function TaskCard({ task }: TaskCardProps) {
           </div>
         )}
         <div className="taskforce-card-dropdownstatus">
-          <DropdownStatus status={curTask.status} />
+          <DropdownStatus
+            status={curTask.status}
+            handleChange={(newStatus) => {
+              handleSaveTask({ ...curTask, status: newStatus });
+            }}
+          />
         </div>
       </div>
       <TaskDetailsPopup
         task={curTask}
         visible={showPopup}
         onClose={() => setShowPopup(false)}
-        onSave={(updatedTask) => {
-          console.log("Tâche mise à jour :", updatedTask);
-          setCurTask(updatedTask);
-        }}
+        onSave={handleSaveTask}
       />
     </>
   );
