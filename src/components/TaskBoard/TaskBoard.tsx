@@ -59,14 +59,26 @@ function TaskBoard() {
     );
   };
 
+  const handleTaskDelete = (taskId: number) => {
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+  };
+
+  const handleCreateTask = (newTask: Task) => {
+    setTasks((prevTasks) => [...prevTasks, newTask]);
+  };
+
   return (
     <div className="taskforce-board">
       <div className="test">
-        <TaskSidebar handleFilter={() => {}} />
+        <TaskSidebar
+          handleFilter={() => {}}
+          handleCreateTask={handleCreateTask}
+        />
         <TaskCalendar
           tasks={tasks}
           startDate={startDate}
           handleTaskUpdate={handleTaskUpdate}
+          handleTaskDelete={handleTaskDelete}
         />
       </div>
       <div className="calendar-controls">

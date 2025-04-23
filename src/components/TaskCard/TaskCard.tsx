@@ -5,17 +5,18 @@ import { useDraggable } from "@dnd-kit/core";
 import PopupButton from "../PopupButton/PopupButton";
 import TaskDetailsPopup from "../TaskDetailsPopup/TaskDetailsPopup";
 import { useState } from "react";
-import { updateTask } from "../../lib/api/Task";
+import { deleteTask, updateTask } from "../../lib/api/Task";
 
 interface TaskCardProps {
   task: Task;
   handleTaskUpdate: (updatedTask: Task) => void;
+  handleTaskDelete: (taskId: number) => void;
 }
 
 const truncateText = (text: string, maxLength: number) =>
   text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
 
-function TaskCard({ task, handleTaskUpdate }: TaskCardProps) {
+function TaskCard({ task, handleTaskUpdate, handleTaskDelete }: TaskCardProps) {
   const [showPopup, setShowPopup] = useState<boolean>(false);
   const [curTask, setCurTask] = useState<Task>(task);
 
@@ -42,6 +43,17 @@ function TaskCard({ task, handleTaskUpdate }: TaskCardProps) {
         console.error("Erreur update :", err);
       }
     }
+  };
+
+  const handleTaskCardDelete = async (id: number) => {
+    if (curTask.id !== id) return;
+    try {
+      await deleteTask(id);
+      handleTaskDelete(id);
+    } catch (err) {
+      console.error("Erreur delete :", err);
+    }
+    setShowPopup(false);
   };
 
   return (
@@ -79,6 +91,7 @@ function TaskCard({ task, handleTaskUpdate }: TaskCardProps) {
         visible={showPopup}
         onClose={() => setShowPopup(false)}
         onSave={handleSaveTask}
+        onDelete={(id) => handleTaskCardDelete(id)}
       />
     </>
   );

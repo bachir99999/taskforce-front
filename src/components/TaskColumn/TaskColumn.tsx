@@ -9,9 +9,15 @@ interface TaskColumnProps {
   day: Date;
   tasks: Task[];
   handleTaskUpdate: (updatedTask: Task) => void;
+  handleTaskDelete: (taskId: number) => void;
 }
 
-function TaskColumn({ day, tasks, handleTaskUpdate }: TaskColumnProps) {
+function TaskColumn({
+  day,
+  tasks,
+  handleTaskUpdate,
+  handleTaskDelete,
+}: TaskColumnProps) {
   const { setNodeRef, isOver } = useDroppable({
     id: day.toDateString(),
   });
@@ -42,6 +48,7 @@ function TaskColumn({ day, tasks, handleTaskUpdate }: TaskColumnProps) {
               key={task.id}
               task={task}
               handleTaskUpdate={handleTaskUpdate}
+              handleTaskDelete={handleTaskDelete}
             />
           ))
         ) : (

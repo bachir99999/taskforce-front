@@ -10,6 +10,7 @@ interface TaskCalendarProps {
   tasks: Task[];
   startDate: Date;
   handleTaskUpdate: (updatedTask: Task) => void;
+  handleTaskDelete: (taskId: number) => void;
 }
 
 const getWeekDays = (startDate: Date) => {
@@ -24,6 +25,7 @@ function TaskCalendar({
   tasks,
   startDate,
   handleTaskUpdate,
+  handleTaskDelete,
 }: TaskCalendarProps) {
   const [taskList, setTaskList] = useState<Task[]>(tasks);
   const weekDays = getWeekDays(startDate);
@@ -78,6 +80,7 @@ function TaskCalendar({
                 day={day}
                 tasks={tasksForDay}
                 handleTaskUpdate={handleTaskUpdate}
+                handleTaskDelete={handleTaskDelete}
               />
             </div>
           );

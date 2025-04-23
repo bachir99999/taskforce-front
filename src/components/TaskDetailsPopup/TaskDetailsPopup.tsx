@@ -13,12 +13,14 @@ interface TaskDetailsPopupProps {
   visible: boolean;
   onClose: () => void;
   onSave: (updatedTask: Task) => void;
+  onDelete: (taskId: number) => void;
 }
 function TaskDetailsPopup({
   task,
   visible,
   onClose,
   onSave,
+  onDelete,
 }: TaskDetailsPopupProps) {
   const [editedTask, setEditedTask] = useState<Task>(
     task ?? {
@@ -91,6 +93,17 @@ function TaskDetailsPopup({
               className="task-button"
               onClick={onClose}
             />
+            {task && (
+              <Button
+                label="Supprimer"
+                icon="pi pi-trash"
+                className="task-button"
+                onClick={() => {
+                  onDelete(task.id);
+                  onClose();
+                }}
+              />
+            )}
             <Button
               label="Sauvegarder"
               icon="pi pi-check"

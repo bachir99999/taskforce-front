@@ -10,6 +10,7 @@ import { createTask } from "../../lib/api/Task";
 
 interface TaskSidebarProps {
   handleFilter: (status: TaskStatus) => void;
+  handleCreateTask: (newTask: Task) => void;
 }
 
 const taskStatusOptions = [
@@ -18,14 +19,14 @@ const taskStatusOptions = [
   { label: "Terminé", value: "DONE" },
 ];
 
-function TaskSidebar({ handleFilter }: TaskSidebarProps) {
+function TaskSidebar({ handleFilter, handleCreateTask }: TaskSidebarProps) {
   const [visible, setVisible] = useState<boolean>(false);
   const [showPopup, setShowPopup] = useState<boolean>(false);
   const [selectedStatus, setSelectedStatus] = useState<TaskStatus>();
 
-  const handleTaskCreate = async (newTask: Omit<Task, "id">) => {
+  const onCreate = async (newTask: Omit<Task, "id">) => {
     try {
-      await createTask(newTask);
+      handleCreateTask(await createTask(newTask));
       setShowPopup(false);
     } catch (error) {
       console.error("Erreur lors de la création de la tâche :", error);
@@ -80,7 +81,8 @@ function TaskSidebar({ handleFilter }: TaskSidebarProps) {
         task={null}
         visible={showPopup}
         onClose={() => setShowPopup(false)}
-        onSave={(newTask) => handleTaskCreate(newTask)}
+        onSave={(newTask) => onCreate(newTask)}
+        onDelete={() => {}}
       />
     </>
   );
