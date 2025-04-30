@@ -1,11 +1,12 @@
 import { format } from "date-fns";
 import { Task } from "../../types/task";
+import { fetchWithAuth } from "./auth";
 
 const BASE_URL = 'http://localhost:8080/tasks';
 
 // Obtenir toutes les tâches
 export async function getAllTasks(): Promise<Task[]> {
-  const res = await fetch(BASE_URL, {
+  const res = await fetchWithAuth(BASE_URL, {
     cache: 'no-store',
   });
 
@@ -15,9 +16,10 @@ export async function getAllTasks(): Promise<Task[]> {
   return rawTasks.map(transformTask);
 }
 
+
 // Obtenir une tâche par ID
 export async function getTaskById(id: number): Promise<Task> {
-  const res = await fetch(`${BASE_URL}/${id}`, {
+  const res = await fetchWithAuth(`${BASE_URL}/${id}`, {
     cache: 'no-store',
   });
 
@@ -36,7 +38,7 @@ export async function createTask(task: Omit<Task, 'id'>): Promise<Task> {
     assignedToId: 1,
   };
 
-  const res = await fetch(BASE_URL, {
+  const res = await fetchWithAuth(BASE_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
@@ -60,7 +62,7 @@ export async function updateTask(id: number, task: Omit<Task, 'id'>): Promise<Ta
     assignedToId: 1,
   };
   
-  const res = await fetch(`${BASE_URL}/${id}`, {
+  const res = await fetchWithAuth(`${BASE_URL}/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
@@ -72,7 +74,7 @@ export async function updateTask(id: number, task: Omit<Task, 'id'>): Promise<Ta
 
 //PATCH
 export async function patchTask(id: number, partialTask: Partial<Task>): Promise<Task> {
-  const res = await fetch(`${BASE_URL}/${id}`, {
+  const res = await fetchWithAuth(`${BASE_URL}/${id}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(partialTask),
@@ -86,7 +88,7 @@ export async function patchTask(id: number, partialTask: Partial<Task>): Promise
 export async function deleteTask(id: number): Promise<void> {
   console.log(`Suppression de la tâche avec l'ID ${id}`);
   
-  const res = await fetch(`${BASE_URL}/${id}`, {
+  const res = await fetchWithAuth(`${BASE_URL}/${id}`, {
     method: 'DELETE',
   });
 

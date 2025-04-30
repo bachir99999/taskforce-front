@@ -1,10 +1,17 @@
 html, body, #root {
   height: 100%;
   overflow: hidden;
-  background-color: hsl(0, 0%, 0%);
+  background: url('./assets/background.jpg') no-repeat !important; 
+  background-size: cover !important;
 }
 
 .app-container {
   height: 100%;
 }
 
+.centered-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+}
