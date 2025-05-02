@@ -4,11 +4,13 @@ import { JSX } from "react";
 
 const Layout = ({ children }: { children: JSX.Element }) => {
   const location = useLocation();
-  const isLoginPage = location.pathname === "/login";
+  const isUnProtectedPage = location.pathname === "/login";
 
   return (
-    <div className={`app-container ${isLoginPage ? "centered-page" : ""}`}>
-      {!isLoginPage && <Navbar />}
+    <div
+      className={`app-container ${isUnProtectedPage ? "centered-page" : ""}`}
+    >
+      {!isUnProtectedPage && <Navbar />}
       {children}
     </div>
   );

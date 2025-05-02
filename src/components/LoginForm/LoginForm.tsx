@@ -6,7 +6,7 @@ import { Button } from "primereact/button";
 import { loginUser } from "../../lib/api/auth";
 import { useAuth } from "../../context/AuthContext";
 
-function LoginForm() {
+function LoginForm({ onSwitchToRegister }: { onSwitchToRegister: () => void }) {
   const { login } = useAuth();
 
   const [name, setName] = useState<string>("");
@@ -21,7 +21,6 @@ function LoginForm() {
     setError(false);
     try {
       const res = await loginUser({ name, password });
-      console.log(res);
       login(`${res.type} ${res.token}`);
       window.location.href = "/";
     } catch (err: any) {
@@ -39,7 +38,14 @@ function LoginForm() {
       />
       <div className="login-footer-register">
         <span className="login-footer-text">Pas encore de compte ?</span>
-        <a href="#" className="login-footer-link">
+        <a
+          href=""
+          onClick={(e) => {
+            e.preventDefault();
+            onSwitchToRegister();
+          }}
+          className="login-footer-link"
+        >
           S'inscrire
         </a>
       </div>

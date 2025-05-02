@@ -1,16 +1,16 @@
 import { Route, Routes } from "react-router-dom";
 import TaskBoard from "./components/TaskBoard/TaskBoard";
-import LoginForm from "./components/LoginForm/LoginForm";
 import ProtectedRoute from "./layouts/ProtectedRoute";
 import Layout from "./layouts/Layout";
 import "./App.css";
+import Identification from "./components/Identification/Identification";
 
 function App() {
   return (
     <Layout>
       <Routes>
         {/* Route de connexion */}
-        <Route path="/login" element={<LoginForm />} />
+        <Route path="/login" element={<Identification />} />
 
         {/* Routes protégées */}
         <Route
