@@ -86,7 +86,6 @@ export async function patchTask(id: number, partialTask: Partial<Task>): Promise
 
 // Supprimer une tâche
 export async function deleteTask(id: number): Promise<void> {
-  console.log(`Suppression de la tâche avec l'ID ${id}`);
   
   const res = await fetchWithAuth(`${BASE_URL}/${id}`, {
     method: 'DELETE',

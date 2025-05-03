@@ -1,21 +1,24 @@
 .taskforce-calendar {
-    display: flex;
-    gap: 2vh;
-    overflow-x: hidden;
-    overflow-y: hidden; 
-    padding: 10px;
-    background: #4d4e4e;
-    border-radius: 1vh;
-    width: 100%;
-    height:100%;
-    margin-right: 10px;
-  }
-  
+  display: flex;
+  gap: 2vh;
+  overflow-x: hidden;
+  overflow-y: hidden; 
+  padding: 10px;
+  border-radius: 1vh;
+  width: 100%;
+  height: 100%;
+  margin-right: 10px;
+  background: linear-gradient(to bottom, #0f0f0f, rgba(15, 15, 15, 0));
+  backdrop-filter: blur(30px); 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(0, 0, 0, 0.2);
+}
+
 .taskcolumn-calendar {
-    flex: 1;
-    width: 100%;
-    min-height: 100%;
-    border-radius: 1vh;
-    background-color: #a1a1a1;
-    border: 2px solid #070707;
+  flex: 1;
+  width: 100%;
+  min-height: 100%;
+  border-radius: 1vh;
+  background: linear-gradient(to bottom, #1a1a1a, #1a1a1a, #333, #4a3569); /* Fond sombre */
+  border-color: #0f0f0f
 }

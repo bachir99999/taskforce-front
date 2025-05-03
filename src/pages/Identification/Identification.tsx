@@ -1,7 +1,7 @@
 import { useState } from "react";
 import TaskForce from "../../assets/TaskForce1.png";
-import LoginForm from "../LoginForm/LoginForm";
-import RegisterForm from "../RegisterForm/RegisterForm";
+import LoginForm from "../../components/LoginForm/LoginForm";
+import RegisterForm from "../../components/RegisterForm/RegisterForm";
 import "./Identification.css";
 
 function Identification() {

@@ -1,5 +1,7 @@
 html, body, #root {
   height: 100%;
+  margin: 0;
+  padding: 0;
   overflow: hidden;
   background: url('./assets/background.jpg') no-repeat !important; 
   background-size: cover !important;

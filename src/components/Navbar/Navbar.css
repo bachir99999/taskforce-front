@@ -1,9 +1,11 @@
 .taskforce-navbar {
-  background: #4d4e4e;
+  background: linear-gradient(to right, #0f0f0f, #1a1a1a, #333, #4d004d);
   padding: 7px 3em;
   display: flex;
-  align-items: center; 
-  justify-content: space-between; 
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Chakra Petch', sans-serif;
+  box-shadow: 0 0 10px #ff00ff, 0 0 2px #ff00ff; 
 }
 
 .taskforce-navbar-title{

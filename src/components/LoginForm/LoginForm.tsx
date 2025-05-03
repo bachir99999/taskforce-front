@@ -64,7 +64,6 @@ function LoginForm({ onSwitchToRegister }: { onSwitchToRegister: () => void }) {
             required
             invalid={error}
           />
-          {error && <small className="error-message">{errorMessage}</small>}
         </div>
       </div>
       <div className="login-form-input">
@@ -78,9 +77,9 @@ function LoginForm({ onSwitchToRegister }: { onSwitchToRegister: () => void }) {
             required
             invalid={error}
           />
-          {error && <small className="error-message">{errorMessage}</small>}
         </div>
       </div>
+      {error && <small className="error-message">{errorMessage}</small>}
       <div className="remember-me-container">
         <div className="remember-me-icon">
           <label htmlFor="remember-me" className="checkbox-label">

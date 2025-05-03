@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Task } from "../../types/task";
-import TaskCalendar from "../TaskCalendar/TaskCalendar";
+import TaskSidebar from "../../components/TaskSidebar/TaskSidebar";
+import TaskCalendar from "../../components/TaskCalendar/TaskCalendar";
+import CalendarPopup from "../../components/CalendarPopup/CalendarPopup";
 import { Button } from "primereact/button";
-import CalendarPopup from "../CalendarPopup/CalendarPopup";
 import "./TaskBoard.css";
-import TaskSidebar from "../TaskSidebar/TaskSidebar";
 import { getAllTasks } from "../../lib/api/Task";
 
 const getMonday = (date: Date) => {

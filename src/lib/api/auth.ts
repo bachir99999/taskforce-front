@@ -1,3 +1,5 @@
+import { User, UserResponse } from "../../types/user";
+
 export interface LoginCredentials {
     name: string;
     password: string;
@@ -6,6 +8,12 @@ export interface LoginCredentials {
   export interface LoginResponse {
     token: string;
     type: string; // "Bearer"
+  }
+
+  export interface RegisterCredentials {
+    name: string;
+    email: string;
+    password: string;
   }
   
   const BASE_URL = 'http://localhost:8080/users';
@@ -27,7 +35,7 @@ export interface LoginCredentials {
     return await response.json();
   }
 
-  export async function registerUser(credentials: LoginCredentials): Promise<LoginResponse> {
+  export async function registerUser(credentials: RegisterCredentials): Promise<UserResponse> {
     const response = await fetch(`${BASE_URL}/register`, {
       method: "POST",
       headers: {
