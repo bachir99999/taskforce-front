@@ -1,5 +1,6 @@
 .taskforce-popupbutton .p-button {
-    border-radius: 60%;
-    color: white;
-    background: rgba(60, 60, 60, 0.8);
+    color: #fff;
+    background: transparent;
+    border: none;
+    font-size: large;
 }

@@ -6,58 +6,68 @@
 
 .p-dropdown-items {
     text-align: center;
+
 }
 
 .p-dropdown-item:hover {
     cursor: pointer;
-    filter: brightness(0.85);
+    filter: brightness(0.7); /* Assombrit l'élément au survol */
+    background-color: rgba(255, 255, 255, 0.1); /* Fond transparent au survol */
 }
 
 .p-dropdown:hover {
-    color: rgba(235, 235, 235, 0.685);
+    color: rgba(235, 235, 235, 0.9);
 }
 
+
+/* Statut TODO */
 .dropdown-status.status-todo {
-    background-color: #f8d7da; 
-    border-color: #dc3545;
-    color: #721c24;
+    background-color: #1a1a1a; /* Fond sombre */
+    border-color: #ff00ff; /* Bordure rose néon */
+    color: #ff00ff; /* Texte rose néon */
 }
 
+/* Statut IN PROGRESS */
 .dropdown-status.status-in-progress {
-    background-color: #fff3cd; 
-    border-color: #ffc107;
-    color: #856404;
+    background-color: #1a1a1a; /* Fond sombre */
+    border-color: #00ffff; /* Bordure cyan néon */
+    color: #00ffff; /* Texte cyan néon */
 }
 
+/* Statut DONE */
 .dropdown-status.status-done {
-    background-color: #d4edda; 
-    border-color: #28a745;
-    color: #155724;
+    background-color: #1a1a1a; /* Fond sombre */
+    border-color: #00ff00; /* Bordure vert néon */
+    color: #00ff00; /* Texte vert néon */
 }
 
+/* Style général pour les statuts */
 .dropdown-status {
     max-width: calc(2 * 5em);
     text-align: center;
     border-radius: 5%;
     margin: 2%;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Lueur subtile */
 }
 
-
+/* Effet au survol */
 .dropdown-status:hover {
-    filter: brightness(0.85);
+    filter: brightness(1.2); /* Accentue la luminosité */
+    box-shadow: 0 0 15px currentColor; /* Lueur néon au survol */
 }
 
+/* Items dans le dropdown */
 .p-dropdown-item.status-todo {
-    background-color: #f8d7da;
-    color: #721c24;
+    background-color: #fff; 
+    color: #ff00ff; /* Texte rose néon */
 }
 
 .p-dropdown-item.status-in-progress {
-    background-color: #fff3cd;
-    color: #856404;
+    background-color: #fff; 
+    color: #00ffff; /* Texte cyan néon */
 }
 
 .p-dropdown-item.status-done {
-    background-color: #d4edda;
-    color: #155724;
+    background-color: #fff; 
+    color: #00ff00; /* Texte vert néon */
 }
