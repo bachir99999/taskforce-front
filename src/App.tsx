@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import TaskBoard from "./pages/TaskBoard/TaskBoard";
 import ProtectedRoute from "./layouts/ProtectedRoute";
 import Layout from "./layouts/Layout";
-import { Bounce, toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import Identification from "./pages/Identification/Identification";
@@ -10,19 +10,7 @@ import Identification from "./pages/Identification/Identification";
 function App() {
   return (
     <>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-        transition={Bounce}
-      />
+      <ToastContainer />
       <Layout>
         <Routes>
           {/* Route de connexion */}

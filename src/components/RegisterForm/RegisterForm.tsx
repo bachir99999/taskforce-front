@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Button } from "primereact/button";
 import "./RegisterForm.css";
 import { registerUser } from "../../lib/api/auth";
-import { toast } from "react-toastify";
+import { Bounce, toast } from "react-toastify";
 
 function RegisterForm({ onSwitchToLogin }: { onSwitchToLogin: () => void }) {
   const [name, setName] = useState<string>("");
@@ -21,7 +21,18 @@ function RegisterForm({ onSwitchToLogin }: { onSwitchToLogin: () => void }) {
       const res = await registerUser({ name, email, password });
       console.log("User registered:", res);
       onSwitchToLogin();
-      toast.success("Inscription réussie ! Vous pouvez vous connecter.");
+      toast.success("Inscription réussie ! Vous pouvez vous connecter.", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        rtl: false,
+        pauseOnFocusLoss: true,
+        draggable: true,
+        pauseOnHover: true,
+        theme: "dark",
+        transition: Bounce,
+      });
     } catch (err: any) {
       setError(true);
       setErrorMessage(err.message);

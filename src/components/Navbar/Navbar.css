@@ -1,17 +1,21 @@
 .taskforce-navbar {
-  background: linear-gradient(to right, #0f0f0f, #1a1a1a, #333, #4d004d);
+  background: linear-gradient(to right, #0f0f0f, #1a1a1a, #333, #00ffffb9);
   padding: 7px 3em;
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-family: 'Chakra Petch', sans-serif;
-  box-shadow: 0 0 10px #ff00ff, 0 0 2px #ff00ff; 
+  box-shadow: 0 0 10px #00ffff, 0 0 2px #00ffff; 
 }
 
 .taskforce-navbar-title{
-  color: white;
-  font-size: 24px;
+  color: #00ffff; 
+  font-size: 28px; 
   font-weight: bold;
+  text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff; 
+  font-family: 'Chakra Petch', sans-serif; 
+  letter-spacing: 2px; 
+  text-transform: uppercase; 
 }
 
 .taskforce-navbar-menu {

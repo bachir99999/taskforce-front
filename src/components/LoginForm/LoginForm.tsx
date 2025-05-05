@@ -22,6 +22,8 @@ function LoginForm({ onSwitchToRegister }: { onSwitchToRegister: () => void }) {
     try {
       const res = await loginUser({ name, password });
       login(`${res.type} ${res.token}`);
+      console.log("User logged in:", res);
+
       window.location.href = "/";
     } catch (err: any) {
       setError(true);

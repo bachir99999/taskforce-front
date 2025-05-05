@@ -61,7 +61,7 @@ export async function updateTask(id: number, task: Omit<Task, 'id'>): Promise<Ta
     dueDate: toIsoDateString(task.dueDate),
     assignedToId: 1,
   };
-  
+
   const res = await fetchWithAuth(`${BASE_URL}/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },

@@ -1,7 +1,7 @@
 .taskforce-sidebar {
     height: 100vh;
-    background: linear-gradient(to bottom, #0f0f0f, #1a1a1a, #333, #4d004d);
-    box-shadow: 0 10px 12px #ff00ff; 
+    background: linear-gradient(to bottom, #0f0f0f, #1a1a1a, #333, #00ffffb9);
+    box-shadow: 0 10px 12px #00ffff; 
     left: 0;
     display: flex;
     flex-direction: column;
