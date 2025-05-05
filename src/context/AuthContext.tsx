@@ -32,7 +32,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
-  console.log("AuthContext", context);
 
   if (!context) {
     console.log("AuthContext is undefined");

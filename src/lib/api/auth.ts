@@ -1,6 +1,4 @@
-import { Slide, toast } from "react-toastify";
-import { User, UserResponse } from "../../types/user";
-import { useAuth } from "../../context/AuthContext";
+import { UserResponse } from "../../types/user";
 
 export interface LoginCredentials {
     name: string;
@@ -71,31 +69,35 @@ export interface LoginCredentials {
     return await response.json();
   }
 
-
-  export const handleSavedToken = async (token: string | null, logout: () => void) => {
-    const response = token ? await verifyToken(token) : false;
-    console.log("Token vérifié:", response);
-  
-    if (!response) {
+  export const verifSavedToken = async (token: string | null, logout: () => void) => {
+    if (!token) {
+      console.log("Aucun token trouvé.");
       logout();
-      toast.error("Session expirée. Veuillez vous reconnecter.", {
-        position: "bottom-right",
-        autoClose: false,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-        transition: Slide,
-      });
+      return false;
+    }
+  
+    try {
+      const response = await verifyToken(token.substring(7));
+      console.log("Token vérifié:", response);
+  
+      if (!response) {
+        logout();
+        return false;
+      }
+  
+      return true;
+    
+    } catch (error) {
+      logout();
+      console.error("Erreur lors de la vérification du token :", error);
+      return false;
     }
   };
 
 
   export async function fetchWithAuth(url: string, options: RequestInit = {}) {
     const token = localStorage.getItem("authToken");
-    
+
     return fetch(url, {
       ...options,
       headers: {
@@ -105,3 +107,4 @@ export interface LoginCredentials {
       },
     });
   }
+

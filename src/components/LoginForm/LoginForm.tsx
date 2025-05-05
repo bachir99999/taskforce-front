@@ -5,9 +5,11 @@ import { useState } from "react";
 import { Button } from "primereact/button";
 import { loginUser } from "../../lib/api/auth";
 import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function LoginForm({ onSwitchToRegister }: { onSwitchToRegister: () => void }) {
   const { login } = useAuth();
+  const navigate = useNavigate();
 
   const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -20,11 +22,11 @@ function LoginForm({ onSwitchToRegister }: { onSwitchToRegister: () => void }) {
     setErrorMessage("");
     setError(false);
     try {
+      console.log("LoginForm submitted with:", { name, password });
+
       const res = await loginUser({ name, password });
       login(`${res.type} ${res.token}`);
-      console.log("User logged in:", res);
-
-      window.location.href = "/";
+      navigate("/");
     } catch (err: any) {
       setError(true);
       setErrorMessage(err.message);

@@ -6,7 +6,6 @@ import CalendarPopup from "../../components/CalendarPopup/CalendarPopup";
 import { Button } from "primereact/button";
 import "./TaskBoard.css";
 import { getAllTasks } from "../../lib/api/Task";
-import { toast } from "react-toastify";
 
 const getMonday = (date: Date) => {
   const day = date.getDay();
@@ -26,10 +25,6 @@ function TaskBoard() {
     getAllTasks()
       .then((data) => setTasks(data.sort((a, b) => a.id - b.id)))
       .catch((error) => {
-        // localStorage.removeItem("authToken");
-        // localStorage.removeItem("userId");
-        // window.location.href = "/login";
-        // toast.error("Sesion expirée, veuillez vous reconnecter.");
         console.error(error);
       })
       .finally(() => setLoading(false));
