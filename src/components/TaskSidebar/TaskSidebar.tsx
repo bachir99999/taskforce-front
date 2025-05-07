@@ -7,6 +7,7 @@ import { Sidebar } from "primereact/sidebar";
 import { MultiSelect } from "primereact/multiselect";
 import TaskDetailsPopup from "../TaskDetailsPopup/TaskDetailsPopup";
 import { createTask } from "../../lib/api/Task";
+import { Bounce, toast } from "react-toastify";
 
 interface TaskSidebarProps {
   handleFilter: (status: TaskStatus) => void;
@@ -28,6 +29,17 @@ function TaskSidebar({ handleFilter, handleCreateTask }: TaskSidebarProps) {
     try {
       handleCreateTask(await createTask(newTask));
       setShowPopup(false);
+      toast.success("Création de tache réussi !", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      });
     } catch (error) {
       console.error("Erreur lors de la création de la tâche :", error);
     }
@@ -45,7 +57,7 @@ function TaskSidebar({ handleFilter, handleCreateTask }: TaskSidebarProps) {
           <div className="taskforce-sidebar-header">
             Taskforce{" "}
             <Button
-              className="taskforce-sidebar-buttons"
+              className="neon-btn"
               icon="pi pi-angle-double-left"
               onClick={() => setVisible(false)}
             />
@@ -65,12 +77,12 @@ function TaskSidebar({ handleFilter, handleCreateTask }: TaskSidebarProps) {
         </Sidebar>
         <div className="taskforce-sidebar-containers-buttons">
           <Button
-            className="taskforce-sidebar-buttons"
+            className="neon-btn"
             icon="pi pi-angle-double-right"
             onClick={() => setVisible(true)}
           />
           <Button
-            className="taskforce-sidebar-buttons"
+            className="neon-btn"
             icon="pi pi-plus"
             onClick={() => setShowPopup(true)}
             tooltip="Ajouter une tache"

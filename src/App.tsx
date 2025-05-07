@@ -16,6 +16,8 @@ function App() {
           {/* Route de connexion */}
           <Route path="/login" element={<Identification />} />
 
+          {/* Route publique */}
+
           {/* Routes protégées */}
           <Route
             path="/"

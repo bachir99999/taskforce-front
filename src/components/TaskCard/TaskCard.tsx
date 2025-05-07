@@ -6,6 +6,7 @@ import PopupButton from "../PopupButton/PopupButton";
 import TaskDetailsPopup from "../TaskDetailsPopup/TaskDetailsPopup";
 import { useState } from "react";
 import { deleteTask, updateTask } from "../../lib/api/Task";
+import { Bounce, toast } from "react-toastify";
 
 interface TaskCardProps {
   task: Task;
@@ -39,6 +40,17 @@ function TaskCard({ task, handleTaskUpdate, handleTaskDelete }: TaskCardProps) {
           dueDate: updatedTask.dueDate,
         });
         handleTaskUpdate(updatedTask);
+        toast.success("Tache mise à jour !", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Bounce,
+        });
       } catch (err) {
         console.error("Erreur update :", err);
       }
@@ -50,6 +62,17 @@ function TaskCard({ task, handleTaskUpdate, handleTaskDelete }: TaskCardProps) {
     try {
       await deleteTask(id);
       handleTaskDelete(id);
+      toast.success("Suppréssion réussi !", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      });
     } catch (err) {
       console.error("Erreur delete :", err);
     }

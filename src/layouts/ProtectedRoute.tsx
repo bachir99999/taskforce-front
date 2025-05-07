@@ -50,6 +50,3 @@ const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
 };
 
 export default ProtectedRoute;
-function sleep(arg0: number) {
-  throw new Error("Function not implemented.");
-}

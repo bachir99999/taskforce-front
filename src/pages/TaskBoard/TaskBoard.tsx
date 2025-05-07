@@ -6,6 +6,7 @@ import CalendarPopup from "../../components/CalendarPopup/CalendarPopup";
 import { Button } from "primereact/button";
 import "./TaskBoard.css";
 import { getAllTasks } from "../../lib/api/Task";
+import WeekPicker from "../../components/WeekPicker/WeekPicker";
 
 const getMonday = (date: Date) => {
   const day = date.getDay();
@@ -86,18 +87,14 @@ function TaskBoard() {
           icon="pi pi-chevron-left"
           tooltip="Semaine précedente"
           onClick={prevWeek}
-          className="calendar-controls-buttons"
+          className="neon-btn"
         />
-        <CalendarPopup
-          date={selectedDate}
-          handleChange={onDateChange}
-          onlyIcon
-        />
+        <WeekPicker dueDate={selectedDate} handleChange={onDateChange} />
         <Button
           icon="pi pi-chevron-right"
           tooltip="Semaine suivante"
           onClick={nextWeek}
-          className="calendar-controls-buttons"
+          className="neon-btn"
         />
       </div>
     </div>
