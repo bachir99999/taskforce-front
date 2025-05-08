@@ -7,6 +7,7 @@ import TaskDetailsPopup from "../TaskDetailsPopup/TaskDetailsPopup";
 import { useState } from "react";
 import { deleteTask, updateTask } from "../../lib/api/Task";
 import { Bounce, toast } from "react-toastify";
+import { useAuth } from "../../context/AuthContext";
 
 interface TaskCardProps {
   task: Task;
@@ -20,6 +21,7 @@ const truncateText = (text: string, maxLength: number) =>
 function TaskCard({ task, handleTaskUpdate, handleTaskDelete }: TaskCardProps) {
   const [showPopup, setShowPopup] = useState<boolean>(false);
   const [curTask, setCurTask] = useState<Task>(task);
+  const { user } = useAuth();
 
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: curTask.id.toString(),
@@ -33,12 +35,16 @@ function TaskCard({ task, handleTaskUpdate, handleTaskDelete }: TaskCardProps) {
     if (JSON.stringify(curTask) !== JSON.stringify(updatedTask)) {
       try {
         setCurTask(updatedTask);
-        await updateTask(updatedTask.id, {
-          name: updatedTask.name,
-          description: updatedTask.description,
-          status: updatedTask.status,
-          dueDate: updatedTask.dueDate,
-        });
+        await updateTask(
+          updatedTask.id,
+          {
+            name: updatedTask.name,
+            description: updatedTask.description,
+            status: updatedTask.status,
+            dueDate: updatedTask.dueDate,
+          },
+          user.id
+        );
         handleTaskUpdate(updatedTask);
         toast.success("Tache mise à jour !", {
           position: "bottom-right",

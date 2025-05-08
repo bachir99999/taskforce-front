@@ -3,8 +3,8 @@ import "./LoginForm.css";
 import { InputText } from "primereact/inputtext";
 import { useState } from "react";
 import { Button } from "primereact/button";
-import { loginUser } from "../../lib/api/auth";
-import { useAuth } from "../../context/AuthContext";
+import { loginUser } from "../../../lib/api/auth";
+import { useAuth } from "../../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 function LoginForm({ onSwitchToRegister }: { onSwitchToRegister: () => void }) {
@@ -22,10 +22,10 @@ function LoginForm({ onSwitchToRegister }: { onSwitchToRegister: () => void }) {
     setErrorMessage("");
     setError(false);
     try {
-      console.log("LoginForm submitted with:", { name, password });
-
       const res = await loginUser({ name, password });
-      login(`${res.type} ${res.token}`);
+      console.log(res);
+
+      login(`${res.type} ${res.token}`, res.user);
       navigate("/");
     } catch (err: any) {
       setError(true);

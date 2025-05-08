@@ -5,6 +5,7 @@ import "./TaskCalendar.css";
 import { DndContext, DragEndEvent } from "@dnd-kit/core";
 import { useEffect, useState } from "react";
 import { updateTask } from "../../lib/api/Task";
+import { useAuth } from "../../context/AuthContext";
 
 interface TaskCalendarProps {
   tasks: Task[];
@@ -28,16 +29,26 @@ function TaskCalendar({
   handleTaskDelete,
 }: TaskCalendarProps) {
   const [taskList, setTaskList] = useState<Task[]>(tasks);
+  const { user } = useAuth();
+
   const weekDays = getWeekDays(startDate);
 
   const handleSaveTask = async (updatedTask: Task) => {
     try {
-      await updateTask(updatedTask.id, {
-        name: updatedTask.name,
-        description: updatedTask.description,
-        status: updatedTask.status,
-        dueDate: updatedTask.dueDate,
-      });
+      if (!user) {
+        console.error("User is not authenticated.");
+        return;
+      }
+      await updateTask(
+        updatedTask.id,
+        {
+          name: updatedTask.name,
+          description: updatedTask.description,
+          status: updatedTask.status,
+          dueDate: updatedTask.dueDate,
+        },
+        user.id
+      );
       handleTaskUpdate(updatedTask);
     } catch (err) {
       console.error("Erreur update :", err);

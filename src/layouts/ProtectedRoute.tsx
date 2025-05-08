@@ -2,20 +2,20 @@ import { Navigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { JSX, useEffect, useRef, useState } from "react";
 import { verifSavedToken } from "../lib/api/auth";
+import Loading from "../components/Loading/Loading";
 import { toast, Zoom } from "react-toastify";
-import { PuffLoader } from "react-spinners";
 import "./ProtectedRoute.css";
 
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
   const { token, logout } = useAuth();
-  const [Loading, setLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const toastId = useRef<string | number | null>(null);
 
   useEffect(() => {
     const verifyToken = async () => {
       const res = await verifSavedToken(token, logout);
 
-      setLoading(false);
+      setIsLoading(false);
       if (
         !res &&
         (toastId.current === null || !toast.isActive(toastId.current))
@@ -39,10 +39,10 @@ const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
     verifyToken();
   }, [token]);
 
-  if (Loading) {
+  if (isLoading) {
     return (
       <div className="loader">
-        <PuffLoader color="#36d7b7" size={460} />
+        <Loading />
       </div>
     );
   }

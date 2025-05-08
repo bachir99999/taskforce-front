@@ -31,11 +31,11 @@ export async function getTaskById(id: number): Promise<Task> {
 }
 
 // Créer une tâche
-export async function createTask(task: Omit<Task, 'id'>): Promise<Task> {
+export async function createTask(task: Omit<Task, 'id'>, idUser: number): Promise<Task> {
   const payload = {
     ...task,
     dueDate: toIsoDateString(task.dueDate),
-    assignedToId: 1,
+    assignedToId: idUser,
   };
 
   const res = await fetchWithAuth(BASE_URL, {
@@ -55,11 +55,11 @@ export async function createTask(task: Omit<Task, 'id'>): Promise<Task> {
 
 
 // Mettre à jour une tâche (PUT complet)
-export async function updateTask(id: number, task: Omit<Task, 'id'>): Promise<Task> {
+export async function updateTask(id: number, task: Omit<Task, 'id'>, idUser: number): Promise<Task> {
   const payload = {
     ...task,
     dueDate: toIsoDateString(task.dueDate),
-    assignedToId: 1,
+    assignedToId: idUser,
   };
 
   const res = await fetchWithAuth(`${BASE_URL}/${id}`, {
@@ -95,7 +95,7 @@ export async function deleteTask(id: number): Promise<void> {
 }
 
 
-function transformTask(raw: any): Task {
+export function transformTask(raw: any): Task {
   return {
     id: raw.id,
     name: raw.name, 

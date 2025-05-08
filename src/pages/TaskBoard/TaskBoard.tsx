@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { Task } from "../../types/task";
 import TaskSidebar from "../../components/TaskSidebar/TaskSidebar";
 import TaskCalendar from "../../components/TaskCalendar/TaskCalendar";
-import CalendarPopup from "../../components/CalendarPopup/CalendarPopup";
 import { Button } from "primereact/button";
 import "./TaskBoard.css";
 import { getAllTasks } from "../../lib/api/Task";
 import WeekPicker from "../../components/WeekPicker/WeekPicker";
+import { useAuth } from "../../context/AuthContext";
+import { getAllTasksOfUser } from "../../lib/api/User";
 
 const getMonday = (date: Date) => {
   const day = date.getDay();
@@ -18,17 +19,21 @@ const getMonday = (date: Date) => {
 
 function TaskBoard() {
   const [startDate, setStartDate] = useState(getMonday(new Date()));
-  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const { user } = useAuth();
 
   useEffect(() => {
-    getAllTasks()
-      .then((data) => setTasks(data.sort((a, b) => a.id - b.id)))
-      .catch((error) => {
-        console.error(error);
-      })
-      .finally(() => setLoading(false));
+    if (user) {
+      getAllTasksOfUser(user.id)
+        .then((data) => setTasks(data.sort((a, b) => a.id - b.id)))
+        .catch((error) => {
+          console.error(error);
+        })
+        .finally(() => setLoading(false));
+    } else {
+      setLoading(false);
+    }
   }, []);
 
   const prevWeek = () => {
@@ -49,7 +54,6 @@ function TaskBoard() {
 
   const onDateChange = (value: any) => {
     if (value) {
-      setSelectedDate(value);
       setStartDate(getMonday(value));
     }
   };
@@ -89,7 +93,7 @@ function TaskBoard() {
           onClick={prevWeek}
           className="neon-btn"
         />
-        <WeekPicker dueDate={selectedDate} handleChange={onDateChange} />
+        <WeekPicker dueDate={startDate} handleChange={onDateChange} />
         <Button
           icon="pi pi-chevron-right"
           tooltip="Semaine suivante"

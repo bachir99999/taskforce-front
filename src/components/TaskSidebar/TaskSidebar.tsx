@@ -8,6 +8,7 @@ import { MultiSelect } from "primereact/multiselect";
 import TaskDetailsPopup from "../TaskDetailsPopup/TaskDetailsPopup";
 import { createTask } from "../../lib/api/Task";
 import { Bounce, toast } from "react-toastify";
+import { useAuth } from "../../context/AuthContext";
 
 interface TaskSidebarProps {
   handleFilter: (status: TaskStatus) => void;
@@ -21,13 +22,18 @@ const taskStatusOptions = [
 ];
 
 function TaskSidebar({ handleFilter, handleCreateTask }: TaskSidebarProps) {
+  const { user } = useAuth();
   const [visible, setVisible] = useState<boolean>(false);
   const [showPopup, setShowPopup] = useState<boolean>(false);
   const [selectedStatus, setSelectedStatus] = useState<TaskStatus>();
 
   const onCreate = async (newTask: Omit<Task, "id">) => {
     try {
-      handleCreateTask(await createTask(newTask));
+      if (user) {
+        handleCreateTask(await createTask(newTask, user.id));
+      } else {
+        console.error("User is not authenticated.");
+      }
       setShowPopup(false);
       toast.success("Création de tache réussi !", {
         position: "bottom-right",

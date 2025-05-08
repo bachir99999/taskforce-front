@@ -1,4 +1,4 @@
-import { JSX, useState } from "react";
+import { JSX, useEffect, useState } from "react";
 import { v4 } from "uuid";
 import {
   addMonths,
@@ -26,6 +26,12 @@ const WeekPicker: React.FC<WeekPickerProps> = ({ handleChange, dueDate }) => {
     firstDay: startOfWeek(dueDate, { weekStartsOn: 1 }),
     lastDay: endOfWeek(dueDate, { weekStartsOn: 1 }),
   });
+
+  useEffect(() => {
+    const firstDay = startOfWeek(dueDate, { weekStartsOn: 1 });
+    const lastDay = endOfWeek(dueDate, { weekStartsOn: 1 });
+    setWeek({ firstDay, lastDay });
+  }, [dueDate]);
 
   const isLeapYear = (): boolean => {
     const year = dueDate.getFullYear();
