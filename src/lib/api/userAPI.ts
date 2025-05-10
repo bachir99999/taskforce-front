@@ -1,7 +1,7 @@
 import { Task } from "../../types/task";
 import { UserResponse } from "../../types/user"; 
-import { fetchWithAuth } from "./auth";
-import { transformTask } from "./Task";
+import { fetchWithAuth } from "./authAPI";
+import { transformTask } from "./taskAPI";
 
 const BASE_URL = 'http://localhost:8080/users';
 
@@ -27,7 +27,6 @@ export async function getAllTasksOfUser(userId : number): Promise<Task[]> {
     cache: 'no-store',
   });
 
-  
   if (!res.ok) throw new Error('Erreur lors du chargement des tâches');
   const rawTasks = await res.json();
   console.log(res);

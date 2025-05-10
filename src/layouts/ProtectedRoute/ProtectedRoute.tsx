@@ -1,8 +1,8 @@
 import { Navigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 import { JSX, useEffect, useRef, useState } from "react";
-import { verifSavedToken } from "../lib/api/auth";
-import Loading from "../components/Loading/Loading";
+import { verifSavedToken } from "../../lib/api/authAPI";
+import Loading from "../../components/Loading/Loading";
 import { toast, Zoom } from "react-toastify";
 import "./ProtectedRoute.css";
 

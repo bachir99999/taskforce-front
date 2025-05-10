@@ -1,11 +1,12 @@
 import { Route, Routes } from "react-router-dom";
 import TaskBoard from "./pages/TaskBoard/TaskBoard";
-import ProtectedRoute from "./layouts/ProtectedRoute";
+import ProtectedRoute from "./layouts/ProtectedRoute/ProtectedRoute";
 import Layout from "./layouts/Layout";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import Identification from "./pages/Identification/Identification";
+import Stats from "./pages/Stats/Stats";
 
 function App() {
   return (
@@ -31,7 +32,7 @@ function App() {
             path="/stats"
             element={
               <ProtectedRoute>
-                <h1>Statistiques</h1>
+                <Stats />
               </ProtectedRoute>
             }
           />

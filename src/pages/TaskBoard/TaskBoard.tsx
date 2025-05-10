@@ -4,10 +4,9 @@ import TaskSidebar from "../../components/TaskSidebar/TaskSidebar";
 import TaskCalendar from "../../components/TaskCalendar/TaskCalendar";
 import { Button } from "primereact/button";
 import "./TaskBoard.css";
-import { getAllTasks } from "../../lib/api/Task";
 import WeekPicker from "../../components/WeekPicker/WeekPicker";
 import { useAuth } from "../../context/AuthContext";
-import { getAllTasksOfUser } from "../../lib/api/User";
+import { getAllTasksOfUser } from "../../lib/api/userAPI";
 
 const getMonday = (date: Date) => {
   const day = date.getDay();

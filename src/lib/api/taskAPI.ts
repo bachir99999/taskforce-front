@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import { Task } from "../../types/task";
-import { fetchWithAuth } from "./auth";
+import { fetchWithAuth } from "./authAPI";
 
 const BASE_URL = 'http://localhost:8080/tasks';
 

@@ -3,10 +3,9 @@ import { Task, TaskStatus } from "../../types/task";
 import "./TaskSidebar.css";
 import { useState } from "react";
 import { Sidebar } from "primereact/sidebar";
-
 import { MultiSelect } from "primereact/multiselect";
 import TaskDetailsPopup from "../TaskDetailsPopup/TaskDetailsPopup";
-import { createTask } from "../../lib/api/Task";
+import { createTask } from "../../lib/api/taskAPI";
 import { Bounce, toast } from "react-toastify";
 import { useAuth } from "../../context/AuthContext";
 

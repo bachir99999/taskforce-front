@@ -4,7 +4,7 @@ import { Task } from "../../types/task";
 import "./TaskCalendar.css";
 import { DndContext, DragEndEvent } from "@dnd-kit/core";
 import { useEffect, useState } from "react";
-import { updateTask } from "../../lib/api/Task";
+import { updateTask } from "../../lib/api/taskAPI";
 import { useAuth } from "../../context/AuthContext";
 
 interface TaskCalendarProps {

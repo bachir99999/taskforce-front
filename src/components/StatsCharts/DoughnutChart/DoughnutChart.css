@@ -1,0 +1,31 @@
+.dougnut-title {
+    font-size: 1.5rem; /* Taille du texte */
+    font-weight: bold; /* Texte en gras */
+    text-align: center; /* Centrer le texte */
+    color: #fff; /* Couleur dominante */
+    margin-bottom: 10px; /* Espacement en bas */
+    letter-spacing: 2px; /* Espacement entre les lettres */
+    text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff; /* Effet néon */
+  }
+  
+  .doughnut-chart-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column; /* Disposition en colonne */
+    justify-content: center; /* Centrer horizontalement */
+    align-items: center; /* Centrer verticalement */
+    border-radius: 15px; /* Coins arrondis */
+    padding: 2rem; /* Espacement interne */
+    border: 2px solid rgba(0, 255, 255, 0.5); /* Bordure cyan translucide */
+    color: #00ffff; /* Couleur du texte */
+    backdrop-filter: blur(20px); /* Effet de flou */
+    box-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff, 0 0 60px #00ffff; /* Effet néon */
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(0, 0, 0, 0.8)); /* Dégradé de fond */
+    transition: transform 0.3s, box-shadow 0.3s; /* Transition pour l'effet de survol */
+  }
+  
+  .doughnut-chart-container:hover {
+    transform: scale(1.05); /* Zoom léger au survol */
+    box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff, 0 0 80px #00ffff; /* Accentuation de l'effet néon */
+  }

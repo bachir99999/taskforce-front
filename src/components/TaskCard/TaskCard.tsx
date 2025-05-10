@@ -5,7 +5,7 @@ import { useDraggable } from "@dnd-kit/core";
 import PopupButton from "../PopupButton/PopupButton";
 import TaskDetailsPopup from "../TaskDetailsPopup/TaskDetailsPopup";
 import { useState } from "react";
-import { deleteTask, updateTask } from "../../lib/api/Task";
+import { deleteTask, updateTask } from "../../lib/api/taskAPI";
 import { Bounce, toast } from "react-toastify";
 import { useAuth } from "../../context/AuthContext";
 
@@ -43,8 +43,9 @@ function TaskCard({ task, handleTaskUpdate, handleTaskDelete }: TaskCardProps) {
             status: updatedTask.status,
             dueDate: updatedTask.dueDate,
           },
-          user.id
+          user?.id ?? 0
         );
+
         handleTaskUpdate(updatedTask);
         toast.success("Tache mise à jour !", {
           position: "bottom-right",

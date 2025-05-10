@@ -3,7 +3,7 @@ import "./LoginForm.css";
 import { InputText } from "primereact/inputtext";
 import { useState } from "react";
 import { Button } from "primereact/button";
-import { loginUser } from "../../../lib/api/auth";
+import { loginUser } from "../../../lib/api/authAPI";
 import { useAuth } from "../../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 

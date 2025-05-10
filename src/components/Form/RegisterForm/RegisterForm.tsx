@@ -3,7 +3,7 @@ import { InputText } from "primereact/inputtext";
 import { useState } from "react";
 import { Button } from "primereact/button";
 import "./RegisterForm.css";
-import { registerUser } from "../../../lib/api/auth";
+import { registerUser } from "../../../lib/api/authAPI";
 import { Bounce, toast } from "react-toastify";
 
 function RegisterForm({ onSwitchToLogin }: { onSwitchToLogin: () => void }) {

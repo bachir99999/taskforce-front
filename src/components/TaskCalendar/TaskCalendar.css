@@ -19,6 +19,6 @@
   width: 100%;
   min-height: 100%;
   border-radius: 1vh;
-  background: linear-gradient(to bottom, #1a1a1a, #1a1a1a, #333, #4a3569); /* Fond sombre */
+  background-color: #1b1b1b;
   border-color: #0f0f0f
 }
