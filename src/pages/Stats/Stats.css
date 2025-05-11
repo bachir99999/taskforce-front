@@ -10,15 +10,21 @@
   flex-direction: row; /* Affiche les graphiques côte à côte */
   justify-content: center; /* Centre les graphiques horizontalement */
   align-items: center; /* Aligne les graphiques verticalement */
+  flex-wrap : wrap; /* Permet aux graphiques de passer à la ligne si l'espace est insuffisant */
   gap: 100px; 
 }
 
 .stats-doughnut {
-    width: 300px;
-    height: 300px;
+    width: 350px;
+    height: 350px;
 }
 
 .stats-bar {
-    width: 300px;
-    height: 300px;
+    width: 350px;
+    height: 350px;
+}
+
+.stats-line {
+    width: 350px;
+    height: 350px;
 }

@@ -3,7 +3,9 @@ import { Task } from "../../../types/task";
 import { Chart } from "primereact/chart";
 import "./DoughnutChart.css";
 import { chartColors } from "../themeChart";
-import { color } from "chart.js/helpers";
+import { countStatuses } from "../../../lib/statsUtils/statsUtils";
+import { se } from "date-fns/locale";
+import Loading from "../../Loading/Loading";
 
 interface DoughnutChartProps {
   taskList: Task[];
@@ -12,13 +14,20 @@ interface DoughnutChartProps {
 function DoughnutChart({ taskList }: DoughnutChartProps) {
   const [chartData, setChartData] = useState({});
   const [chartOptions, setChartOptions] = useState({});
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    const countStatus = countStatuses(taskList);
+
     const data = {
-      labels: ["A faire", "En cours", "Terminé"],
+      labels: ["A faire", "En cours", "Terminée"],
       datasets: [
         {
-          data: [300, 50, 100],
+          data: [
+            countStatus["TODO"] ?? 0,
+            countStatus["IN_PROGRESS"] ?? 0,
+            countStatus["DONE"] ?? 0,
+          ],
           backgroundColor: [
             chartColors.todo,
             chartColors.inprogress,
@@ -35,6 +44,7 @@ function DoughnutChart({ taskList }: DoughnutChartProps) {
       ],
     };
     const options = {
+      maintainAspectRatio: false,
       cutout: "60%",
       plugins: {
         legend: {
@@ -51,8 +61,12 @@ function DoughnutChart({ taskList }: DoughnutChartProps) {
 
     setChartData(data);
     setChartOptions(options);
+    setLoading(false);
   }, []);
 
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <div className="doughnut-chart-container">
       <div className="dougnut-title">Proportion des états</div>
@@ -60,6 +74,7 @@ function DoughnutChart({ taskList }: DoughnutChartProps) {
         type="doughnut"
         data={chartData}
         options={chartOptions}
+        width="350px"
         className="w-full md:w-30rem"
       />
     </div>

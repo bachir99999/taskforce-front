@@ -39,4 +39,13 @@
     gap: 3em; 
 }
 
+.p-menuitem-link {
+  display: flex;
+  align-items: center;
+  gap: 5px; 
+}
+
+.p-menuitem-icon {
+  padding-bottom: 3px; 
+}
 

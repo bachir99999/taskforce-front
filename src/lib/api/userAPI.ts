@@ -29,6 +29,5 @@ export async function getAllTasksOfUser(userId : number): Promise<Task[]> {
 
   if (!res.ok) throw new Error('Erreur lors du chargement des tâches');
   const rawTasks = await res.json();
-  console.log(res);
   return rawTasks.map(transformTask);
 }
