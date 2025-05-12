@@ -1,54 +1,118 @@
-# React + TypeScript + Vite
+# Taskforce – Application de Gestion de Tâches Cyberpunk
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Taskforce est une application web moderne et intuitive conçue pour la gestion des tâches et le suivi des performances. Elle offre une interface utilisateur élégante et immersive, inspirée d'un thème cyberpunk, avec des effets lumineux et des transitions fluides. L'application est idéale pour les équipes ou les individus souhaitant organiser leurs tâches, suivre leur progression et analyser leurs performances.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🎥 [Voir la démonstration de Taskforce sur YouTube](https://youtu.be/VOEIw0Vlfrs)
 
-## Expanding the ESLint configuration
+## **Fonctionnalités principales :**
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### **1. Gestion des tâches**
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- **Création, modification et suppression de tâches :**
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+  - Ajoutez de nouvelles tâches avec des informations telles que le nom, la description, la date d'échéance et le statut.
+  - Modifiez les tâches existantes pour refléter les changements.
+  - Supprimez les tâches obsolètes ou terminées.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Statuts des tâches :**
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+  - Les tâches peuvent être marquées comme "À faire", "En cours" ou "Terminée".
+  - Les statuts sont visualisés dans des graphiques pour un suivi clair.
+
+---
+
+### **2. Statistiques et visualisations**
+
+- **Graphiques :**
+
+  - Graphiques pour visualiser la répartition des tâches par statut.
+  - Analysez les performances sur les 8 dernières semaines ou les 12 derniers mois.
+
+- **Indicateurs de performance :**
+
+  - Suivez les progrès de l'équipe ou des individus grâce à des statistiques claires et détaillées.
+
+---
+
+### **3. Gestion des utilisateurs**
+
+- **Profil utilisateur :**
+- - Modifiez vos informations personnelles, telles que le nom, l'email et le mot de passe.
+  - Interface intuitive avec des champs de saisie stylisés et des boutons interactifs.
+- **Déconnexion sécurisée :**
+
+  - Déconnectez-vous facilement avec un bouton dédié.
+  - Gestion des sessions expirées avec redirection automatique vers la page de connexion.
+
+---
+
+### **4. Sécurité et authentification**
+
+- **Routes protégées :**
+
+  - Certaines pages, comme les statistiques, sont accessibles uniquement aux utilisateurs authentifiés.
+  - Vérification automatique des tokens pour sécuriser les sessions.
+
+- **Gestion des sessions :**
+
+  - Déconnexion automatique en cas de session (**token**) expirée.
+  - Redirection vers la page de connexion pour une expérience utilisateur fluide.
+
+---
+
+### **5. Interface utilisateur moderne**
+
+- **Thème cyberpunk :**
+
+  - Couleurs dominantes : cyan et noir.
+  - Effets lumineux et transitions fluides pour une expérience immersive.
+
+- **Composants interactifs :**
+
+  - Boutons, champs de saisie et menus stylisés avec des animations au survol et au clic.
+  - Utilisation de bibliothèques modernes comme PrimeReact pour des composants réactifs et élégants.
+
+---
+
+## Architecture technique
+
+### Backend
+
+- **Java 23**
+- **Spring Boot**
+- Authentification via **JWT**
+- Endpoints REST sécurisés
+- Gestion des utilisateurs et des tâches avec entités relationnelles
+
+### Frontend
+
+- **React**
+- **TypeScript**
+- **PrimeReact** pour les composants interactifs
+
+- **React Router** pour la gestion des routes.
+- **CSS sur mesure** avec styles **néon / cyberpunk**
+- État géré localement (via `useState`/`useEffect`) et APIs REST consommées dynamiquement
+
+🎥 [Exemple de stylisation YouTube](https://www.youtube.com/watch?v=8y0YlWumwNg)
+
+---
+
+## Expérience utilisateur
+
+Taskforce propose une **interface immersive** inspirée des univers cyberpunk :
+
+- Boutons stylisés avec **animations lumineuses**
+- Thèmes sombres, teintes fluorescentes
+- **Responsive** et intuitif
+- Conçu pour améliorer la productivité tout en offrant un **plaisir visuel**
+
+---
+
+## 📌 Objectifs du projet
+
+- Offrir une alternative design et originale aux gestionnaires de tâches classiques
+- Créer une base technique robuste pour un futur outil de collaboration
+- Explorer les **possibilités stylistiques et techniques** du web moderne

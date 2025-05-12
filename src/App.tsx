@@ -8,6 +8,7 @@ import "./App.css";
 import Identification from "./pages/Identification/Identification";
 import Stats from "./pages/Stats/Stats";
 import Profile from "./pages/Profile/Profile";
+import Loading from "./components/Loading/Loading";
 
 function App() {
   return (
@@ -47,7 +48,7 @@ function App() {
           />
 
           {/* Route inconnue */}
-          <Route path="*" element={<h1>Page non trouvée</h1>} />
+          <Route path="*" element={<Loading />} />
         </Routes>
       </Layout>
     </>
