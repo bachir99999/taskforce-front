@@ -92,6 +92,12 @@ function TaskSidebar({ handleFilter, handleCreateTask }: TaskSidebarProps) {
             className="neon-btn"
             icon="pi pi-angle-double-right"
             onClick={() => setVisible(true)}
+            tooltip={
+              "Filtres " +
+              (selectedStatus && selectedStatus.length > 0
+                ? "actif"
+                : "inactif")
+            }
           />
           <Button
             className="neon-btn"

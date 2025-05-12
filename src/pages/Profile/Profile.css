@@ -1,0 +1,127 @@
+/* Container principal */
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  color: #00ffff;
+  min-height: 100vh;
+}
+
+/* En-tête */
+.profile-header {
+  margin-bottom: 30px;
+}
+
+.neon-text {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff;
+  letter-spacing: 2px;
+}
+
+/* Carte de profil */
+.profile-card {
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(0, 255, 255, 0.5);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  max-width: 400px;
+}
+
+.profile-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.7);
+}
+
+/* Groupes d'inputs */
+.profile-input-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.profile-label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 1rem;
+  color: #00ffff;
+}
+
+.profile-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgba(0, 255, 255, 0.5);
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #00ffff;
+  font-size: 1rem;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.profile-input:focus {
+  outline: none;
+  background-color: rgba(0, 255, 255, 0.1);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+}
+
+/* Bouton de sauvegarde */
+.profile-save-btn {
+  background-color: rgba(0, 255, 255, 0.1);
+  border: 1px solid rgba(0, 255, 255, 0.5);
+  color: #00ffff;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-save-btn:hover {
+  background-color: rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+}
+
+.profile-save-btn:active {
+  background-color: rgba(0, 255, 255, 0.3);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+  transform: scale(0.95);
+}
+
+
+/* Bouton de déconnexion */
+.profile-logout-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  top: 20px;
+  left: 20px;
+  background-color: rgba(255, 0, 0, 0.1); /* Fond rouge translucide */
+  border: 1px solid rgba(255, 0, 0, 0.5); /* Bordure rouge translucide */
+  color: #ff0000; /* Texte rouge */
+  font-size: 1rem;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); /* Effet lumineux rouge */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.profile-logout-btn:hover {
+  background-color: rgba(255, 0, 0, 0.2); 
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+  transform: scale(1.05); 
+}
+
+.profile-logout-btn:active {
+  background-color: rgba(255, 0, 0, 0.3); 
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.8); 
+  transform: scale(0.95); 
+}

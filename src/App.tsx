@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import Identification from "./pages/Identification/Identification";
 import Stats from "./pages/Stats/Stats";
+import Profile from "./pages/Profile/Profile";
 
 function App() {
   return (
@@ -40,7 +41,7 @@ function App() {
             path="/user"
             element={
               <ProtectedRoute>
-                <h1>Mon profile</h1>
+                <Profile />
               </ProtectedRoute>
             }
           />

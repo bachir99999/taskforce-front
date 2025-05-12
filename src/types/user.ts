@@ -13,3 +13,9 @@ export interface UserResponse {
     name: string;
     email: string;
   }
+
+export interface UserDTO {
+    name: string;
+    email: string;
+    password: string;
+  }

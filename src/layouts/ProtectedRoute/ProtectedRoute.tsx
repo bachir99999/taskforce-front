@@ -1,4 +1,4 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { JSX, useEffect, useRef, useState } from "react";
 import { verifSavedToken } from "../../lib/api/authAPI";
@@ -9,15 +9,20 @@ import "./ProtectedRoute.css";
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
   const { token, logout } = useAuth();
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const location = useLocation();
   const toastId = useRef<string | number | null>(null);
+  const isProtectedPage =
+    location.pathname === "/" || location.pathname === "/stats";
 
   useEffect(() => {
     const verifyToken = async () => {
       const res = await verifSavedToken(token, logout);
-
+      console.log(location.pathname);
       setIsLoading(false);
+
       if (
         !res &&
+        isProtectedPage &&
         (toastId.current === null || !toast.isActive(toastId.current))
       ) {
         toastId.current = toast.error(
