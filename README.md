@@ -1,4 +1,4 @@
-# Taskforce – Application de Gestion de Tâches Cyberpunk
+# Taskforce – Application de Gestion de Tâches
 
 Taskforce est une application web moderne et intuitive conçue pour la gestion des tâches et le suivi des performances. Elle offre une interface utilisateur élégante et immersive, inspirée d'un thème cyberpunk, avec des effets lumineux et des transitions fluides. L'application est idéale pour les équipes ou les individus souhaitant organiser leurs tâches, suivre leur progression et analyser leurs performances.
 
