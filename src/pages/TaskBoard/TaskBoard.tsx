@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Task } from "../../types/task";
+import { Task, TaskStatus } from "../../types/task";
 import TaskSidebar from "../../components/TaskSidebar/TaskSidebar";
 import TaskCalendar from "../../components/TaskCalendar/TaskCalendar";
 import { Button } from "primereact/button";
@@ -7,6 +7,7 @@ import "./TaskBoard.css";
 import WeekPicker from "../../components/WeekPicker/WeekPicker";
 import { useAuth } from "../../context/AuthContext";
 import { getAllTasksOfUser } from "../../lib/api/userAPI";
+import Loading from "../../components/Loading/Loading";
 
 const getMonday = (date: Date) => {
   const day = date.getDay();
@@ -19,6 +20,7 @@ const getMonday = (date: Date) => {
 function TaskBoard() {
   const [startDate, setStartDate] = useState(getMonday(new Date()));
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [curFilters, setCurFilters] = useState<TaskStatus[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const { user } = useAuth();
 
@@ -71,15 +73,25 @@ function TaskBoard() {
     setTasks((prevTasks) => [...prevTasks, newTask]);
   };
 
+  const handleFilter = (status: TaskStatus[]) => {
+    setCurFilters(status);
+  };
+
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <div className="taskforce-board">
       <div className="test">
         <TaskSidebar
-          handleFilter={() => {}}
+          handleFilter={handleFilter}
           handleCreateTask={handleCreateTask}
         />
         <TaskCalendar
-          tasks={tasks}
+          tasks={tasks.filter(
+            (task) => curFilters.length == 0 || curFilters.includes(task.status)
+          )}
           startDate={startDate}
           handleTaskUpdate={handleTaskUpdate}
           handleTaskDelete={handleTaskDelete}

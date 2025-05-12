@@ -28,73 +28,89 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: white;
+    color: #00ffff; ;
     font-family: 'Courier New', Courier, monospace;
     font-size: 24px;
     font-weight: bold;
 }
 
 
+.p-sidebar-content {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding-left: 5px;
+}
+
+
+
 .taskforce-sidebar-multiselect {
     width: 100%;
-    background-color: #444 ;
+    background-color: rgba(0, 255, 255, 0.1); /* Fond translucide cyan */
     border-radius: 5px;
-    color: white;
-    border: none;
+    color: #00ffff; /* Texte cyan */
+    border: 1px solid rgba(0, 255, 255, 0.5); /* Bordure cyan translucide */
     margin-top: 10px;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); /* Effet lumineux */
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 .p-multiselect {
-    width: 100% ;
-    background-color: #555 ;
-    color: white ;
-    border: 1px solid #666 ;
+    width: 305px;
+    background-color: rgba(0, 0, 0, 0.8); /* Fond sombre */
+    color: #00ffff; /* Texte cyan */
+    border: 1px solid rgba(0, 255, 255, 0.5); /* Bordure cyan translucide */
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); /* Effet lumineux */
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
+.p-multiselect:hover {
+    background-color: rgba(0, 255, 255, 0.1); /* Fond cyan clair au survol */
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.7); /* Accentuation de l'effet lumineux */
+}
 
 .p-multiselect .p-multiselect-label {
-    color: white ;
+    color: #00ffff; /* Texte cyan */
+    font-weight: bold; /* Texte en gras */
 }
 
 .p-multiselect-panel {
-    background-color: #333 ;
-    border: 1px solid #555 ;
+    background-color: rgba(0, 0, 0, 0.9); /* Fond sombre */
+    border: 1px solid rgba(0, 255, 255, 0.5); /* Bordure cyan translucide */
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5); /* Effet lumineux */
 }
 
-
 .p-multiselect-items .p-multiselect-item {
-    background-color: #333 ;
-    color: white ;
-    transition: background 0.3s ease;
+    background-color: rgba(0, 0, 0, 0.8); /* Fond sombre */
+    color: #00ffff; /* Texte cyan */
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 .p-multiselect-items .p-multiselect-item:hover {
-    background-color: rgba(115, 118, 121, 0.767);
+    background-color: rgba(0, 255, 255, 0.2); /* Fond cyan clair au survol */
+    color: #ffffff; /* Texte blanc au survol */
 }
 
 .p-multiselect-item.p-highlight {
-    background-color:rgba(33, 70, 100, 0.767);
-    color: white ;
+    background-color: rgba(0, 255, 255, 0.3); /* Fond cyan clair pour les éléments sélectionnés */
+    color: #ffffff; /* Texte blanc */
+    font-weight: bold; /* Texte en gras */
 }
 
 .p-multiselect-item.p-highlight:hover {
-    background-color:rgba(45, 107, 158, 0.767);
+    background-color: rgba(0, 255, 255, 0.5); /* Fond cyan plus clair au survol */
+    color: #ffffff; /* Texte blanc */
 }
 
 .p-multiselect-checkbox, .p-multiselect-select-all, .p-multiselect-header {
-    opacity: 0;
+    opacity: 0; /* Masque ces éléments */
     position: absolute;
     pointer-events: none;
 }
 
 .taskforce-sidebar-multiselect-container {
-    color: white;
+    color: #00ffff; /* Texte cyan */
     font-size: 20px;
-}
-
-.p-sidebar-content {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    padding-left: 10px;
+    font-family: "Courier New", Courier, monospace; /* Police futuriste */
+    text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff; /* Effet lumineux sur le texte */
 }

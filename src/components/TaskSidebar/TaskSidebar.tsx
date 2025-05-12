@@ -10,7 +10,7 @@ import { Bounce, toast } from "react-toastify";
 import { useAuth } from "../../context/AuthContext";
 
 interface TaskSidebarProps {
-  handleFilter: (status: TaskStatus) => void;
+  handleFilter: (status: TaskStatus[]) => void;
   handleCreateTask: (newTask: Task) => void;
 }
 
@@ -24,7 +24,7 @@ function TaskSidebar({ handleFilter, handleCreateTask }: TaskSidebarProps) {
   const { user } = useAuth();
   const [visible, setVisible] = useState<boolean>(false);
   const [showPopup, setShowPopup] = useState<boolean>(false);
-  const [selectedStatus, setSelectedStatus] = useState<TaskStatus>();
+  const [selectedStatus, setSelectedStatus] = useState<TaskStatus[]>();
 
   const onCreate = async (newTask: Omit<Task, "id">) => {
     try {
@@ -50,6 +50,11 @@ function TaskSidebar({ handleFilter, handleCreateTask }: TaskSidebarProps) {
     }
   };
 
+  const onFilter = (status: TaskStatus[]) => {
+    handleFilter(status);
+    setSelectedStatus(status);
+  };
+
   return (
     <>
       <div className="taskforce-sidebar">
@@ -72,7 +77,9 @@ function TaskSidebar({ handleFilter, handleCreateTask }: TaskSidebarProps) {
             <MultiSelect
               className="taskforce-sidebar-multiselect"
               value={selectedStatus}
-              onChange={(e) => setSelectedStatus(e.value)}
+              onChange={(e) => {
+                onFilter(e.value);
+              }}
               options={taskStatusOptions}
               optionLabel="label"
               optionValue="value"

@@ -4,7 +4,6 @@ import { Chart } from "primereact/chart";
 import "./DoughnutChart.css";
 import { chartColors } from "../themeChart";
 import { countStatuses } from "../../../lib/statsUtils/statsUtils";
-import { se } from "date-fns/locale";
 import Loading from "../../Loading/Loading";
 
 interface DoughnutChartProps {
